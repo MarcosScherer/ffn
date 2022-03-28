@@ -988,14 +988,15 @@ class GroupStats(dict):
                 elif f is None:
                     row.append(raw)
                 elif f == "p":
-                    row.append(fmtp(raw))
+                    row.append(fmtp(raw.replace("%",""))
                 elif f == "n":
-                    row.append(fmtn(raw))
+                    row.append(fmtn(raw.replace("%","")))
                 elif f == "dt":
                     row.append(raw.strftime("%Y-%m-%d"))
                 else:
                     raise NotImplementedError("unsupported format %s" % f)
-            row.replace("%","")
+            #for line in row:
+            #    line.replace("%","")
             data.append(row)
         return tabulate(data, headers="firstrow")
         #print(tabulate(data, headers="firstrow"))
