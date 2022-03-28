@@ -995,6 +995,7 @@ class GroupStats(dict):
                     row.append(raw.strftime("%Y-%m-%d"))
                 else:
                     raise NotImplementedError("unsupported format %s" % f)
+            row.replace("%","")
             data.append(row)
         return tabulate(data, headers="firstrow")
         #print(tabulate(data, headers="firstrow"))
