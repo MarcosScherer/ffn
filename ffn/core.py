@@ -997,8 +997,8 @@ class GroupStats(dict):
                     raise NotImplementedError("unsupported format %s" % f)
             data.append(row)
 
-        print(tabulate(data, headers="firstrow"))
-
+        #print(tabulate(data, headers="firstrow"))
+        return data
     def display_lookback_returns(self):
         """
         Displays the current lookback returns for each series.
