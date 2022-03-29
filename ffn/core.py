@@ -988,19 +988,59 @@ class GroupStats(dict):
                 elif f is None:
                     row.append(raw)
                 elif f == "p":
-                    row.append(fmtp(raw.replace("%",""))
+                    row.append(fmtp(raw))
                 elif f == "n":
-                    row.append(fmtn(raw.replace("%","")))
+                    row.append(fmtn(raw))
                 elif f == "dt":
                     row.append(raw.strftime("%Y-%m-%d"))
                 else:
                     raise NotImplementedError("unsupported format %s" % f)
-            #for line in row:
-            #    line.replace("%","")
             data.append(row)
-        return tabulate(data, headers="firstrow")
+
+        print(tabulate(data, headers="firstrow"))
+    
+    def display_v2(self):
+        """
+        Display summary stats table.
+        """
+        data = []
+        first_row = ["Stat"]
+        first_row.extend(self._names)
+        data.append(first_row)
+
+        stats = self._stats()
+
+        for stat in stats:
+            k, n, f = stat
+            # blank row
+            if k is None:
+                row = [""] * len(data[0])
+                data.append(row)
+                continue
+
+            row = [n]
+            for key in self._names:
+                raw = getattr(self[key], k)
+
+                # if rf is a series print nan
+                if k == "rf" and not type(raw) == float:
+                    row.append(np.nan)
+                elif f is None:
+                    row.append(raw)
+                elif f == "p":
+                    row.append(raw)
+                elif f == "n":
+                    row.append(raw)
+                elif f == "dt":
+                    row.append(raw.strftime("%Y-%m-%d"))
+                else:
+                    raise NotImplementedError("unsupported format %s" % f)
+            data.append(row)
+        return data
         #print(tabulate(data, headers="firstrow"))
 
+                               
+                               
     def display_lookback_returns(self):
         """
         Displays the current lookback returns for each series.
