@@ -975,7 +975,7 @@ class GroupStats(dict):
             # blank row
             if k is None:
                 row = [""] * len(data[0])
-                data.append(row)
+                #data.append(row)
                 continue
 
             row = [n]
