@@ -988,16 +988,16 @@ class GroupStats(dict):
                 elif f is None:
                     row.append(raw)
                 elif f == "p":
-                    row.append(fmtp(raw))
+                    row.append(raw)
                 elif f == "n":
-                    row.append(fmtn(raw))
+                    row.append(raw)
                 elif f == "dt":
                     row.append(raw.strftime("%Y-%m-%d"))
                 else:
                     raise NotImplementedError("unsupported format %s" % f)
             data.append(row)
-
-        print(tabulate(data, headers="firstrow"))
+        return data
+        #print(tabulate(data, headers="firstrow"))
     
     def display_v2(self):
         """
