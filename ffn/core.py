@@ -996,7 +996,7 @@ class GroupStats(dict):
                 else:
                     raise NotImplementedError("unsupported format %s" % f)
             data.append(row)
-        return data
+        #return data
         #print(tabulate(data, headers="firstrow"))
     
     def display_v2(self):
