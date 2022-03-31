@@ -131,55 +131,10 @@ class PerformanceStats(object):
 
     def _calculate(self, obj):
         # default values
-        self.daily_mean = np.nan
-        self.daily_vol = np.nan
-        self.daily_sharpe = np.nan
-        self.daily_sortino = np.nan
-        self.best_day = np.nan
-        self.worst_day = np.nan
         self.total_return = np.nan
         self.cagr = np.nan
-        self.incep = np.nan
-        self.drawdown = np.nan
         self.max_drawdown = np.nan
-        self.drawdown_details = np.nan
-        self.daily_skew = np.nan
-        self.daily_kurt = np.nan
-        self.monthly_returns = np.nan
-        self.avg_drawdown = np.nan
-        self.avg_drawdown_days = np.nan
-        self.monthly_mean = np.nan
-        self.monthly_vol = np.nan
-        self.monthly_sharpe = np.nan
-        self.monthly_sortino = np.nan
-        self.best_month = np.nan
-        self.worst_month = np.nan
-        self.mtd = np.nan
-        self.three_month = np.nan
-        self.pos_month_perc = np.nan
-        self.avg_up_month = np.nan
-        self.avg_down_month = np.nan
-        self.monthly_skew = np.nan
-        self.monthly_kurt = np.nan
-        self.six_month = np.nan
-        self.yearly_returns = np.nan
-        self.ytd = np.nan
-        self.one_year = np.nan
-        self.yearly_mean = np.nan
-        self.yearly_vol = np.nan
-        self.yearly_sharpe = np.nan
-        self.yearly_sortino = np.nan
-        self.best_year = np.nan
-        self.worst_year = np.nan
-        self.three_year = np.nan
-        self.win_year_perc = np.nan
-        self.twelve_month_win_perc = np.nan
-        self.yearly_skew = np.nan
-        self.yearly_kurt = np.nan
-        self.five_year = np.nan
-        self.ten_year = np.nan
-        self.calmar = np.nan
-
+        self.yearly_sharpe = np.nan            
         self.return_table = {}
         # end default values
 
