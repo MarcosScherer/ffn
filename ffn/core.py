@@ -411,15 +411,8 @@ class PerformanceStats(object):
             ("ten_year", "10Y (ann.)", "p"),
             ("incep", "Since Incep. (ann.)", "p"),
             (None, None, None),
-            """("daily_sharpe", "Daily Sharpe", "n"),
-            ("daily_sortino", "Daily Sortino", "n"),
-            ("daily_mean", "Daily Mean (ann.)", "p"),
-            ("daily_vol", "Daily Vol (ann.)", "p"),
-            ("daily_skew", "Daily Skew", "n"),
-            ("daily_kurt", "Daily Kurt", "n"),
-            ("best_day", "Best Day", "p"),
-            ("worst_day", "Worst Day", "p"),
-            (None, None, None),"""
+       
+            (None, None, None),
             ("monthly_sharpe", "Monthly Sharpe", "n"),
             ("monthly_sortino", "Monthly Sortino", "n"),
             ("monthly_mean", "Monthly Mean (ann.)", "p"),
