@@ -808,8 +808,6 @@ class GroupStats(dict):
             ("rf", "Risk-free rate", "p"),
             (None, None, None),
             ("total_return", "Total Return", "p"),
-            ("daily_sharpe", "Daily Sharpe", "n"),
-            ("daily_sortino", "Daily Sortino", "n"),
             ("cagr", "CAGR", "p"),
             ("max_drawdown", "Max Drawdown", "p"),
             ("calmar", "Calmar Ratio", "n"),
