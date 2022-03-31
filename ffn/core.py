@@ -177,7 +177,7 @@ class PerformanceStats(object):
 
         # Will calculate daily figures only if the input data has at least daily frequency or higher (e.g hourly)
         # Rather < 2 days than <= 1 days in case of data taken at different hours of the days
-        if r.index.to_series().diff().min() < pd.Timedelta("2 days"):
+        """if r.index.to_series().diff().min() < pd.Timedelta("2 days"):
             self.daily_mean = r.mean() * 252
             self.daily_vol = np.std(r, ddof=1) * np.sqrt(252)
 
@@ -196,7 +196,7 @@ class PerformanceStats(object):
                 )
 
             self.best_day = r.max()
-            self.worst_day = r.min()
+            self.worst_day = r.min()"""
 
         self.total_return = obj[-1] / obj[0] - 1
 
