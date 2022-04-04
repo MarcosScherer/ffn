@@ -118,12 +118,12 @@ class PerformanceStats(object):
                 self.six_month,
                 self.ytd,
                 self.one_year,
-                self.three_year,
-                self.five_year,
-                self.ten_year,
+               # self.three_year,
+                #self.five_year,
+                #self.ten_year,
                 self.cagr,
             ],
-            ["mtd", "3m", "6m", "ytd", "1y", "3y", "5y", "10y", "incep"],
+            ["mtd", "3m", "6m", "ytd", "1y", "incep"],
         )
         self.lookback_returns.name = self.name
 
