@@ -205,22 +205,22 @@ class PerformanceStats(object):
 
         self.drawdown = dp.to_drawdown_series()
         self.max_drawdown = self.drawdown.min()
-        self.drawdown_details = drawdown_details(self.drawdown)
-        if self.drawdown_details is not None:
-            self.avg_drawdown = self.drawdown_details["drawdown"].mean()
-            self.avg_drawdown_days = self.drawdown_details["Length"].mean()
+        #self.drawdown_details = drawdown_details(self.drawdown)
+        #if self.drawdown_details is not None:
+         #   self.avg_drawdown = self.drawdown_details["drawdown"].mean()
+          #  self.avg_drawdown_days = self.drawdown_details["Length"].mean()
 
         self.calmar = np.divide(self.cagr, np.abs(self.max_drawdown))
 
         if len(r) < 4:
             return
 
-        if r.index.to_series().diff().min() <= pd.Timedelta("2 days"):
-            self.daily_skew = r.skew()
+        #if r.index.to_series().diff().min() <= pd.Timedelta("2 days"):
+         #   self.daily_skew = r.skew()
 
             # if all zero/nan kurt fails division by zero
-            if len(r[(~np.isnan(r)) & (r != 0)]) > 0:
-                self.daily_kurt = r.kurt()
+          #  if len(r[(~np.isnan(r)) & (r != 0)]) > 0:
+           #     self.daily_kurt = r.kurt()
 
         # stats using monthly data
         self.monthly_returns = self.monthly_prices.to_returns()
@@ -231,29 +231,29 @@ class PerformanceStats(object):
 
         # Will calculate monthly figures only if the input data has at least monthly frequency or higher (e.g daily)
         # Rather < 32 days than <= 31 days in case of data taken at different hours of the days
-        if r.index.to_series().diff().min() < pd.Timedelta("32 days"):
-            self.monthly_mean = mr.mean() * 12
-            self.monthly_vol = np.std(mr, ddof=1) * np.sqrt(12)
+        #if r.index.to_series().diff().min() < pd.Timedelta("32 days"):
+         #   self.monthly_mean = mr.mean() * 12
+          #  self.monthly_vol = np.std(mr, ddof=1) * np.sqrt(12)
 
-            if type(self.rf) is float:
-                self.monthly_sharpe = mr.calc_sharpe(rf=self.rf, nperiods=12)
-                self.monthly_sortino = calc_sortino_ratio(mr, rf=self.rf, nperiods=12)
+           # if type(self.rf) is float:
+            #    self.monthly_sharpe = mr.calc_sharpe(rf=self.rf, nperiods=12)
+             #   self.monthly_sortino = calc_sortino_ratio(mr, rf=self.rf, nperiods=12)
             # rf is a price series
-            else:
-                _rf_monthly_price_returns = self.rf.resample("M").last().to_returns()
-                self.monthly_sharpe = mr.calc_sharpe(
-                    rf=_rf_monthly_price_returns, nperiods=12
-                )
-                self.monthly_sortino = calc_sortino_ratio(
-                    mr, rf=_rf_monthly_price_returns, nperiods=12
-                )
-            self.best_month = mr.max()
-            self.worst_month = mr.min()
+            #else:
+             #   _rf_monthly_price_returns = self.rf.resample("M").last().to_returns()
+              #  self.monthly_sharpe = mr.calc_sharpe(
+               #     rf=_rf_monthly_price_returns, nperiods=12
+             #   )
+             #   self.monthly_sortino = calc_sortino_ratio(
+             #       mr, rf=_rf_monthly_price_returns, nperiods=12
+              #  )
+           # self.best_month = mr.max()
+            #self.worst_month = mr.min()
 
             # -1 here to account for first return that will be nan
-            self.pos_month_perc = len(mr[mr > 0]) / float(len(mr) - 1)
-            self.avg_up_month = mr[mr > 0].mean()
-            self.avg_down_month = mr[mr <= 0].mean()
+            #self.pos_month_perc = len(mr[mr > 0]) / float(len(mr) - 1)
+            #self.avg_up_month = mr[mr > 0].mean()
+            #self.avg_down_month = mr[mr <= 0].mean()
 
             # return_table
             for idx in mr.index:
@@ -293,15 +293,15 @@ class PerformanceStats(object):
             if len(denom) > 0:
                 self.three_month = dp[-1] / denom[-1] - 1
 
-        if r.index.to_series().diff().min() < pd.Timedelta("32 days"):
-            if len(mr) < 4:
-                return
+      #  if r.index.to_series().diff().min() < pd.Timedelta("32 days"):
+       #     if len(mr) < 4:
+        #        return
 
-            self.monthly_skew = mr.skew()
+         #   self.monthly_skew = mr.skew()
 
             # if all zero/nan kurt fails division by zero
-            if len(mr[(~np.isnan(mr)) & (mr != 0)]) > 0:
-                self.monthly_kurt = mr.kurt()
+          #  if len(mr[(~np.isnan(mr)) & (mr != 0)]) > 0:
+           #     self.monthly_kurt = mr.kurt()
 
         if r.index.to_series().diff().min() < pd.Timedelta("185 days"):
             if len(mr) < 6:
@@ -333,7 +333,7 @@ class PerformanceStats(object):
             if isinstance(self.rf, float):
                 if self.yearly_vol > 0:
                     self.yearly_sharpe = yr.calc_sharpe(rf=self.rf, nperiods=1)
-                self.yearly_sortino = calc_sortino_ratio(yr, rf=self.rf, nperiods=1)
+          #      self.yearly_sortino = calc_sortino_ratio(yr, rf=self.rf, nperiods=1)
             # rf is a price series
             else:
                 _rf_yearly_price_returns = self.rf.resample("A").last().to_returns()
@@ -341,15 +341,15 @@ class PerformanceStats(object):
                     self.yearly_sharpe = yr.calc_sharpe(
                         rf=_rf_yearly_price_returns, nperiods=1
                     )
-                self.yearly_sortino = calc_sortino_ratio(
-                    yr, rf=_rf_yearly_price_returns, nperiods=1
-                )
+           #     self.yearly_sortino = calc_sortino_ratio(
+            #        yr, rf=_rf_yearly_price_returns, nperiods=1
+             #   )
 
-            self.best_year = yr.max()
-            self.worst_year = yr.min()
+            #self.best_year = yr.max()
+            #self.worst_year = yr.min()
 
             # -1 here to account for first return that will be nan
-            self.win_year_perc = len(yr[yr > 0]) / float(len(yr) - 1)
+            #self.win_year_perc = len(yr[yr > 0]) / float(len(yr) - 1)
 
             # need at least 1 year of monthly returns
             if mr.size > 11:
@@ -359,34 +359,34 @@ class PerformanceStats(object):
                     tot += 1
                     if mp[i] / mp[i - 11] > 1:
                         win += 1
-                self.twelve_month_win_perc = float(win) / tot
+             #   self.twelve_month_win_perc = float(win) / tot
 
         if r.index.to_series().diff().min() < pd.Timedelta("1097 days"):
             if len(yr) < 3:
                 return
 
             # annualize stat for over 1 year
-            self.three_year = calc_cagr(dp[dp.index[-1] - pd.DateOffset(years=3) :])
+            #self.three_year = calc_cagr(dp[dp.index[-1] - pd.DateOffset(years=3) :])
 
         if r.index.to_series().diff().min() < pd.Timedelta("367 days"):
             if len(yr) < 4:
                 return
 
-            self.yearly_skew = yr.skew()
+         #   self.yearly_skew = yr.skew()
 
             # if all zero/nan kurt fails division by zero
             if len(yr[(~np.isnan(yr)) & (yr != 0)]) > 0:
-                self.yearly_kurt = yr.kurt()
+          #      self.yearly_kurt = yr.kurt()
 
         if r.index.to_series().diff().min() < pd.Timedelta("1828 days"):
             if len(yr) < 5:
                 return
-            self.five_year = calc_cagr(dp[dp.index[-1] - pd.DateOffset(years=5) :])
+           # self.five_year = calc_cagr(dp[dp.index[-1] - pd.DateOffset(years=5) :])
 
         if r.index.to_series().diff().min() < pd.Timedelta("3654 days"):
             if len(yr) < 10:
                 return
-            self.ten_year = calc_cagr(dp[dp.index[-1] - pd.DateOffset(years=10) :])
+            #self.ten_year = calc_cagr(dp[dp.index[-1] - pd.DateOffset(years=10) :])
 
         return
 
