@@ -375,7 +375,7 @@ class PerformanceStats(object):
          #   self.yearly_skew = yr.skew()
 
             # if all zero/nan kurt fails division by zero
-            if len(yr[(~np.isnan(yr)) & (yr != 0)]) > 0:
+            #if len(yr[(~np.isnan(yr)) & (yr != 0)]) > 0:
           #      self.yearly_kurt = yr.kurt()
 
         if r.index.to_series().diff().min() < pd.Timedelta("1828 days"):
